@@ -469,14 +469,6 @@ export function loadFileActions(action: ActionSource<FileSource, FileNode>) {
         return;
       }
 
-      const list = nodes.map((node) => node.fullpath).join('\n');
-      if (
-        (await prompt(`Move these files or directories to trash?\n${list}`)) !==
-        'yes'
-      ) {
-        return;
-      }
-
       await fsTrash(nodes.map((node) => node.fullpath));
 
       for (const node of nodes) {
